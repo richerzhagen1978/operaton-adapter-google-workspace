@@ -1,0 +1,1 @@
+# operaton-adapter-google-workspace
