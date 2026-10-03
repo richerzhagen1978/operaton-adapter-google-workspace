@@ -155,3 +155,46 @@ Die vollständigen Projektrichtlinien (Teil A–D + CI-Automatisierung) sind in 
 ---
 
 *Exportiert durch Claude Sonnet 4.6 am 2026-10-03 aus dem Claude.ai-Projekt "operaton-adapter-google-workspace"*
+
+---
+
+## Chat 4: „Memory exportieren und Dateien für Claude Code pushen" (2026-10-03)
+
+**Kontext:** Björn wechselt zu Claude Code und möchte, dass Claude Code alle Projekt-Informationen vorfindet. Er beauftragt Claude (Chat), den vollständigen Memory-Inhalt in `open-items.md` zu schreiben, den Chat-Verlauf in `chat_history.md` zu exportieren und eine `CLAUDE.md` zu erstellen – alles direkt ins GitHub-Repo zu pushen.
+
+**Ausgangslage:**
+- Es existierte bereits ein vorheriger Commit (von einem anderen Claude-Code-Chat) mit `open-items.md`, `chat_history.md` und einer `CLAUDE.md`
+- Die vorhandene `CLAUDE.md` war bereits gut strukturiert und vollständig
+
+**Durchgeführte Aktionen:**
+- Memory aller relevanten Dateien gelesen (areas, topics, people, profile)
+- Alle drei Chats im Projekt per `recent_chats` abgerufen
+- `open-items.md` vollständig aktualisiert (Memory + Richtlinien + offene Punkte)
+- `chat_history.md` um diesen Chat (Chat 4) ergänzt
+- `CLAUDE.md` beibehalten (war bereits aktuell vom vorherigen Commit)
+- Commit und Push auf `main`
+
+**Ergebnis:**
+- Alle drei Dateien sind auf GitHub aktuell
+- Claude Code findet beim Start `CLAUDE.md` automatisch (Claude Code lädt diese Datei beim Start)
+- Vollständiger Kontext über `open-items.md` und `chat_history.md` erreichbar
+
+---
+
+## Kernentscheidungen (Zusammenfassung über alle Chats)
+
+| Thema | Entscheidung | Status |
+|---|---|---|
+| Adapter-Granularität | Ein Repo für alle Google-Workspace-Dienste | ✅ beschlossen |
+| Technologie | Node.js (konsistent mit CIP/Asana) | ✅ beschlossen |
+| Auth-Methode | Domain-Wide Delegation via Service Account | ✅ beschlossen |
+| Impersonation | Als Parameter je Task (`impersonateAs`), kein globaler Nutzer | ✅ beschlossen |
+| Allowlist | Erlaubte Postfächer/Nutzer in Adapter-Konfiguration | ✅ beschlossen |
+| Themen-Schema | `google:<dienst>:<operation>` (z. B. `google:gmail:send-mail`) | ✅ beschlossen |
+| MVP-Scope | Core + Gmail + Calendar | ✅ beschlossen |
+| Release-Workflow | Feature-Branch → develop → CI grün → Freigabe Björn → main | ✅ beschlossen |
+| Inbound-Trigger | Outbound-only MVP vs. auch Inbound-Trigger | ❓ offen |
+| Deployment-Ziel | Noch nicht festgelegt | ❓ offen |
+| CI/CD-Pipeline | Noch nicht eingerichtet | ❓ offen |
+| Teil C (öff. API) | Gilt das für dieses Projekt? | ❓ offen |
+| Teil D (UI) | Gilt das für dieses Projekt? | ❓ offen |
